@@ -7,8 +7,6 @@ import {createBrowserHistory} from 'history'
 
 import './index.css'
 import App from './App';
-import Login from './components/Login';
-import PrivateRoute from './components/PrivateRoute';
 import configureStore from './Store'
 
 const history = createBrowserHistory()
@@ -18,8 +16,7 @@ ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <Switch>
-                <Route exact path="/login" component={Login} />
-                <PrivateRoute exact path="/" component={App}/>
+                <Route path="/" component={App}/>
             </Switch>
         </ConnectedRouter>
     </Provider>,

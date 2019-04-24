@@ -30,7 +30,7 @@ class Home extends Component {
 
         return(
             <div className="container">
-                <h3 className="center">Our items</h3>
+                <h3 className="center">Items</h3>
                 <div className="box">
                     {itemList}
                 </div>

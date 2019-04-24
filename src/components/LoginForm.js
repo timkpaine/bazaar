@@ -24,6 +24,7 @@ export default class LoginForm extends Component {
   onSubmit = (event) => {
     event.preventDefault()
     this.props.onSubmit(this.state.username, this.state.password)
+    this.props.history.push('/')
   }
 
   render() {

@@ -5,19 +5,13 @@ import {authErrors, isAuthenticated} from './reducers'
 
 
 class Logout extends Component {
-  handleInputChange = (event) => {}
-
-  componentDidMount() {
-  }
-
   onSubmit = (event) => {
     event.preventDefault()
     this.props.onSubmit()
-    // this.props.history.push('/')
+    this.props.history.push('/')
   }
 
   render() {
-    console.log('here')
     return (
       <div className="container center">
         <form onSubmit={this.onSubmit}>
