@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { removeItem,addQuantity,subtractQuantity} from './actions/cartActions'
+
+import { cartItems } from './reducers'
+import { removeItem,addQuantity,subtractQuantity} from './actions/cart'
 import Recipe from './Recipe'
+
 class Cart extends Component{
 
     //to remove the item completely
@@ -69,7 +72,7 @@ class Cart extends Component{
 
 const mapStateToProps = (state)=>{
     return{
-        items: state.addedItems,
+        items: cartItems(state)
         //addedItems: state.addedItems
     }
 }

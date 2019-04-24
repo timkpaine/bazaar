@@ -1,4 +1,4 @@
-.box{
+.box {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap
@@ -23,7 +23,7 @@
 .collection-item.avatar .title {
     font-size: 20px;
     font-weight: 500;
-    color: #ee6e73;
+    color: #fff;
     display: block;
     margin-bottom: 20px;
     
@@ -34,4 +34,15 @@
 }
 .item-desc{
     align-self:center;
+}
+
+/*.
+   Pages.
+*/
+.login-page {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
 }

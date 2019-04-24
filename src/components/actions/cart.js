@@ -1,9 +1,13 @@
-
-import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING} from './action-types/cart-actions'
+//Types should be in const to avoid typos and duplication since it's a string and could be easily miss spelled
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
+export const SUB_QUANTITY = 'SUB_QUANTITY';
+export const ADD_QUANTITY = 'ADD_QUANTITY';
+export const ADD_SHIPPING = 'ADD_SHIPPING';
 
 //add cart action
 export const addToCart= (id)=>{
-    return{
+    return {
         type: ADD_TO_CART,
         id
     }
