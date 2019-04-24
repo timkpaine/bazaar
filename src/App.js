@@ -5,6 +5,7 @@ import {Link, BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from './components/Home'
 import Cart from './components/Cart'
 import Login from './components/Login';
+import Register from './components/Register';
 import Logout from './components/Logout';
 import PrivateRoute from './components/PrivateRoute';
 import { allItems, isAuthenticated} from './components/reducers'
@@ -23,6 +24,9 @@ class App extends Component {
                   <li><Link to="/cart"><i className="material-icons">shopping_cart</i></Link></li>
                   {!this.props.isAuthenticated?
                     <li><Link to="/login">Login</Link></li>
+                    :""}
+                  {!this.props.isAuthenticated?
+                    <li><Link to="/register">Register</Link></li>
                     :
                     <li><Link to="/logout">Logout</Link></li>
                   }
@@ -32,6 +36,9 @@ class App extends Component {
             <Switch>
                 {!this.props.isAuthenticated?
                   <Route exact path="/login" component={Login} />
+                    :""}
+                {!this.props.isAuthenticated?
+                  <Route exact path="/register" component={Register} />
                   :
                   <Route exact path="/logout" component={Logout} />
                 }

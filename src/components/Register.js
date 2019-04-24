@@ -1,6 +1,10 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
+import {login} from  './actions/auth'
+import {authErrors, isAuthenticated} from './reducers'
 
-export default class LoginForm extends Component {
+class Register extends Component {
   state = {
     username: '',
     password: ''
@@ -28,12 +32,16 @@ export default class LoginForm extends Component {
   }
 
   render() {
+    if (this.props.isAuthenticated){
+       return <Redirect to='/' />
+    }
+
     const errors = this.props.errors || {}
 
     return (
       <div className="container">
         <form onSubmit={this.onSubmit}>
-          <h1>Login</h1>
+          <h3>Register</h3>
           {errors.non_field_errors?<h2 color="red">{errors.non_field_errors}</h2>:""}
           <input name="username" id="username" type="text" className="validate"
             ref={(input) => (this.primaryInput = input)} 
@@ -45,6 +53,12 @@ export default class LoginForm extends Component {
             onChange={this.handleInputChange} />
           <label htmlFor="password">Password</label>
           <span className="helper-text" data-error="wrong" data-success=""></span>
+
+          <input name="confirmpassword" id="confirmpassword" type="password" className="validate"
+            onChange={this.handleInputChange} />
+          <label htmlFor="confirmpassword">Confirm Password</label>
+          <span className="helper-text" data-error="wrong" data-success=""></span>
+
           <br />
           <br />
           <button className="btn waves-effect waves-light" type="submit">Log In</button>
@@ -53,3 +67,16 @@ export default class LoginForm extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  errors: authErrors(state),
+  isAuthenticated: isAuthenticated(state)
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit: (username, password) => {
+    dispatch(login(username, password))
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
