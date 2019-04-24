@@ -6,7 +6,7 @@ class Messages extends Component {
   render() {
     console.log(this.props)
     return (
-      <div className="section">
+      <div className="section center">
         <span className="waves-effect waves-light">Messages</span>
       </div>
     )

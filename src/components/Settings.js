@@ -6,7 +6,7 @@ class Settings extends Component {
   render() {
     console.log(this.props)
     return (
-      <div className="section">
+      <div className="section center">
         <span className="waves-effect waves-light">Username: </span>
         <span className="waves-effect waves-light">{this.props.userId}</span>
       </div>
