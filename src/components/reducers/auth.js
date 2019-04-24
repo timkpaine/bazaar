@@ -4,6 +4,7 @@ import * as auth from '../actions/auth'
 
 const initialState = {
   access: undefined,
+  username: '',
   refresh: undefined,
   errors: {},
 }
@@ -21,7 +22,7 @@ export default (state=initialState, action) => {
           ...jwtDecode(action.payload.refresh)
         },
         errors: {}
-    }
+      }
     case auth.LOGOUT:
       return {
         access: undefined,
@@ -64,6 +65,12 @@ export function isAccessTokenExpired(state) {
 export function refreshToken(state) {
   if (state.refresh) {
     return  state.refresh.token
+  }
+}
+
+export function userId(state) {
+  if (state.refresh) {
+    return  state.refresh.user_id
   }
 }
 

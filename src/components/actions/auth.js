@@ -16,7 +16,9 @@ export const login = (username, password) => ({
         body: JSON.stringify({username, password}),
         headers: { 'Content-Type': 'application/json' },
         types: [
-            LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE
+            LOGIN_REQUEST,
+            LOGIN_SUCCESS,
+            LOGIN_FAILURE
         ]
       }
 })
