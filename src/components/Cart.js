@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
 
-import { cartItems } from './reducers'
+import { cartItems, isAuthenticated} from './reducers'
 import { removeItem,addQuantity,subtractQuantity} from './actions/cart'
 import Recipe from './Recipe'
 
@@ -21,7 +22,9 @@ class Cart extends Component{
         this.props.subtractQuantity(id);
     }
     render(){
-              
+        if(!this.props.isAuthenticated){
+           return  (<Redirect to='/' />)
+        }
         let addedItems = this.props.items.length ?
             (  
                 this.props.items.map(item=>{
@@ -72,7 +75,8 @@ class Cart extends Component{
 
 const mapStateToProps = (state)=>{
     return{
-        items: cartItems(state)
+        items: cartItems(state),
+        isAuthenticated: isAuthenticated(state)
         //addedItems: state.addedItems
     }
 }

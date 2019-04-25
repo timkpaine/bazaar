@@ -12,6 +12,13 @@ class Profile extends Component {
   state = {
     activeTab: 'settings'
   }
+  componentDidMount() {
+    if(window.location.href.indexOf('settings')>0){
+      this.setState({activeTab:'settings'})
+    } else if(window.location.href.indexOf('messages')>0){
+      this.setState({activeTab:'messages'})
+    }
+  }
 
   render() {
     if (!this.props.isAuthenticated){

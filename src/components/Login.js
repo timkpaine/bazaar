@@ -5,11 +5,6 @@ import {login} from  './actions/auth'
 import {authErrors, isAuthenticated} from './reducers'
 
 class Login extends Component {
-  state = {
-    username: '',
-    password: ''
-  }
-
   handleInputChange = (event) => {
     const target = event.target;
     const value = target.type ===
@@ -32,33 +27,33 @@ class Login extends Component {
   }
 
   render() {
-    if (this.props.isAuthenticated){
-       return  (<Redirect to='/' />)
+    console.log(this.props.isAuthenticated)
+    if (this.props.isAuthenticated === true){
+       return  (<Redirect to='/shop' />)
+    } else {
+     const errors = this.props.errors || {}
+      return (
+        <div className="container">
+          <form onSubmit={this.onSubmit}>
+            <h3>Login</h3>
+            {errors.non_field_errors?<h2 color="red">{errors.non_field_errors}</h2>:""}
+            <input name="username" id="username" type="text" className="validate"
+              ref={(input) => (this.primaryInput = input)} 
+              onChange={this.handleInputChange} />
+            <label htmlFor="username">Username</label>
+            <span className="helper-text" data-error="wrong" data-success=""></span>
+
+            <input name="password" id="password" type="password" className="validate"
+              onChange={this.handleInputChange} />
+            <label htmlFor="password">Password</label>
+            <span className="helper-text" data-error="wrong" data-success=""></span>
+            <br />
+            <br />
+            <button className="btn waves-effect waves-light" type="submit">Log In</button>
+          </form>
+        </div>
+      )
     }
-
-    const errors = this.props.errors || {}
-
-    return (
-      <div className="container">
-        <form onSubmit={this.onSubmit}>
-          <h3>Login</h3>
-          {errors.non_field_errors?<h2 color="red">{errors.non_field_errors}</h2>:""}
-          <input name="username" id="username" type="text" className="validate"
-            ref={(input) => (this.primaryInput = input)} 
-            onChange={this.handleInputChange} />
-          <label htmlFor="username">Username</label>
-          <span className="helper-text" data-error="wrong" data-success=""></span>
-
-          <input name="password" id="password" type="password" className="validate"
-            onChange={this.handleInputChange} />
-          <label htmlFor="password">Password</label>
-          <span className="helper-text" data-error="wrong" data-success=""></span>
-          <br />
-          <br />
-          <button className="btn waves-effect waves-light" type="submit">Log In</button>
-        </form>
-      </div>
-    )
   }
 }
 

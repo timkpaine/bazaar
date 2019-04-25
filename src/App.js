@@ -12,7 +12,6 @@ import Register from './components/Register';
 import Profile from './components/Profile';
 
 
-import PrivateRoute from './components/PrivateRoute';
 import { allItems, isAuthenticated} from './components/reducers'
 
 class App extends Component {
@@ -26,6 +25,20 @@ class App extends Component {
             edge: "left",
             inDuration: 250
         });
+
+        if(window.location.href.indexOf('shop')>0){
+          this.setState({activeMainTab:'shop'})
+        } else if(window.location.href.indexOf('cart')>0){
+          this.setState({activeMainTab:'cart'})
+        } else if(window.location.href.indexOf('login')>0){
+          this.setState({activeMainTab:'login'})
+        } else if(window.location.href.indexOf('logout')>0){
+          this.setState({activeMainTab:'logout'})
+        } else if(window.location.href.indexOf('register')>0){
+          this.setState({activeMainTab:'register'})
+        } else if(window.location.href.indexOf('profile')>0){
+          this.setState({activeMainTab:'profile'})
+        }
     }
 
   render() {
@@ -66,7 +79,8 @@ class App extends Component {
               }
             </ul>
               <div className="nav-wrapper">
-                <Link to="/" className="brand-logo">bazaar</Link>
+                <Link to="/" className="brand-logo"
+                   onClick={()=> this.setState({activeMainTab:"shop"})}>bazaar</Link>
                 <a href="" data-target="mobile-nav" className="sidenav-trigger">
                   <i className="material-icons">menu</i>
                 </a>
@@ -107,17 +121,17 @@ class App extends Component {
             </nav>
             <Switch>
                 {!this.props.isAuthenticated?
-                  <Route exact path="/login" component={Login} />
+                  <Route path="/login" component={Login} />
                     :
                   <Route path="/profile" component={Profile} />
                 }
                 {!this.props.isAuthenticated?
-                  <Route exact path="/register" component={Register} />
+                  <Route path="/register" component={Register} />
                   :
-                  <Route exact path="/logout" component={Logout} />
+                  <Route path="/logout" component={Logout} />
                 }
-                <Route exact path="/" component={Home}/>
-                <PrivateRoute exact path="/cart" component={Cart}/>
+                <Route exact path="/cart" component={Cart}/>
+                <Route path="/" component={Home}/>
             </Switch>
             </div>
        </BrowserRouter>
